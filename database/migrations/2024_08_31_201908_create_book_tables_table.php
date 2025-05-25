@@ -18,7 +18,7 @@ class CreateBookTablesTable extends Migration
             $table->string("name");
             $table->string("email");
             $table->integer("phone");
-            $table->integer("nafigation")->nullable(true);
+            $table->enum("status",['showed','notshowed','sent'])->default("notshowed");
             $table->string("Num_peaple");
             $table->string("date");
             $table->string("time");

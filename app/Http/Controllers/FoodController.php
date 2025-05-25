@@ -21,8 +21,8 @@ class FoodController extends Controller
         return view('food.all',compact('foods','TypeFoods'));
     }
     public function create()
-    {
-        return view('food.create');
+    {   $typefood=TypeFood::all();
+        return view('food.create',compact('typefood'));
     }
 
     public function store(FoodRequest $request)
@@ -63,7 +63,8 @@ class FoodController extends Controller
     public function edit($id)
     {
         $food = Food::findOrFail($id);
-        return view("food.edit", ['food' => $food]);
+        $typefood=TypeFood::all();
+        return view("food.edit", ['food' => $food,'typefood'=>$typefood]);
     }
 
 

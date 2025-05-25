@@ -14,11 +14,11 @@
             <div class="row">
 
                 @if (session('massege'))
-                <h4 class="alert alert-success text-center">{{ session('massege') }}</h4>
-            @endif
+                    <h4 class="alert alert-success text-center">{{ session('massege') }}</h4>
+                @endif
                 @if (session('delete'))
-                <h4 class="alert alert-danger text-center">{{ session('delete') }}</h4>
-            @endif
+                    <h4 class="alert alert-danger text-center">{{ session('delete') }}</h4>
+                @endif
                 <!-- End Col -->
                 <div class="col-lg-12">
                     <div class="card-style mb-30">
@@ -29,7 +29,7 @@
                             <div class="right">
                                 <div class="select-style-1">
                                     <div class="select-position select-sm">
-                                       <a class="btn btn-success" href="{{route('createfood')}}">Add food</a>
+                                        <a class="btn btn-success" href="{{ route('createfood') }}">Add food</a>
                                     </div>
                                 </div>
                                 <!-- end select -->
@@ -88,10 +88,10 @@
 
                                             <td>
                                                 <div class="action justify-content-end">
-                                                    <a href="{{route('updatefood',$food->id)}}" class="edit">
+                                                    <a href="{{ route('updatefood', $food->id) }}" class="edit">
                                                         <i class="lni lni-pencil"></i>
                                                     </a>
-                                                    <a href="{{route('deletfood',$food->id)}}" class="trash mx-3">
+                                                    <a href="{{ route('deletfood', $food->id) }}" class="trash mx-3">
                                                         <i class="lni lni-trash-can"></i> </a>
 
                                                 </div>

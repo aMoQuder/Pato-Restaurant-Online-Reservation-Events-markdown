@@ -116,7 +116,7 @@
                                                 <p class="text-sm">$345</p>
                                             </td>
 
-                                       
+
                                         </tr>
                                     </tbody>
                                 </table>

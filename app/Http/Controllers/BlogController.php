@@ -11,7 +11,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = blog::all();
+        $blogs = blog::orderBy('created_at', 'desc')->paginate(3);;
         return view('blog', compact('blogs'));
     }
     public function all()
@@ -55,7 +55,7 @@ class BlogController extends Controller
             File::delete(public_path('blog/img/' . $blog->image));
         }
         $blog->delete();
-        return redirect()->back()->with("massege", "successfully addign new blog");
+        return redirect()->back()->with("massege", "successfully deleted blog");
     }
 
 
@@ -104,6 +104,6 @@ class BlogController extends Controller
             'title' => $request->title,
             "description" =>  $old_description,
         ]);
-        return redirect()->back()->with("massege", "successfully adding new blog");
+        return redirect()->route('allblog')->with("massege", "successfully updated new blog");
     }
 }

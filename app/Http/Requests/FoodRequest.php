@@ -27,7 +27,7 @@ class FoodRequest extends FormRequest
             'image' => 'required|max:2048|image|',
             'name' => 'required|min:5|max:2000',
             'type_id' => 'required',
-            'price' => 'required',
+            'price' => 'required|integer',
             'description' => 'required|min:5|max:2000',
         ];
     }

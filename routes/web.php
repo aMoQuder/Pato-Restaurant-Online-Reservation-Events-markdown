@@ -51,9 +51,19 @@ Route::group(['middleware' => 'CheckAdmin'], function () {
     Route::get('/showContact{id}', 'ContactController@show')->name('showContact');
     // -----------------------------Contact Card operation-----------------------------
 
+    // ----------------------------- type food Card operation-----------------------------
+    Route::get('/createtypefood', 'TypeFoodController@create')->name('createtypefood');
+    Route::post('/typefoodStore', 'TypeFoodController@store')->name('typefoodStore');
+
+    Route::get('/alltypefood', 'TypeFoodController@all')->name('alltypefood');
+    Route::get('/deletetypefood{id}', 'TypeFoodController@delete')->name('deletetypefood');
+    Route::post('/savetypefood', 'TypeFoodController@save')->name('savetypefood');
+    Route::get('/updatetypefood{id}', 'TypeFoodController@edit')->name('updatetypefood');
+    // ----------------------------- typefood Card operation-----------------------------
+
+
     // -----------------------------food Card operation-----------------------------
     Route::get('/createfood', 'FoodController@create')->name('createfood');
-    Route::get('/showfood{id}', 'FoodController@show')->name('showfood');
     Route::get('/allfood', 'FoodController@all')->name('allfood');
     Route::get('/deletfood{id}', 'FoodController@delete')->name('deletfood');
     Route::post('/foodStore', 'FoodController@store')->name('foodStore');

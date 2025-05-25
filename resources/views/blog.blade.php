@@ -74,8 +74,10 @@
 
                         <!-- Pagination -->
                         <div class="pagination flex-l-m flex-w m-l--6 p-t-25">
-                            <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-                            <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+                            @foreach ($blogs->links()->elements[0] as $page => $url)
+
+                            <a href="{{ $url }}" class="item-pagination flex-c-m trans-0-4 active-pagination {{ $page == $blogs->currentPage() ? 'active' : '' }}">{{ $page }}</a>
+                        @endforeach
                         </div>
                     </div>
                 </div>

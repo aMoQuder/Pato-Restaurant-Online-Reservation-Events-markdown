@@ -17,8 +17,21 @@
                     <div class="col-md-6">
                         <div class="title d-flex align-items-center flex-wrap">
                             <h2 class="mr-40">BOOK TABLE</h2>
-                            <a href="#0" class="main-btn primary-btn btn-hover btn-sm">
-                                <i class="lni lni-plus mr-5"></i> New Book of table</a>
+                            <a href="javascript:void(0);" onclick="downloadPDF()"
+                                class="main-btn primary-btn btn-hover btn-sm">
+                                <i class="lni lni-plus mr-5"></i> Download pdf </a>
+
+                            <a href="javascript:void(0);" onclick="downloadExcel()"
+                                class="main-btn success-btn-outline btn-hover">
+                                Download Excel
+                            </a>
+
+                            <!-- زر تحميل PowerPoint -->
+                            <a href="javascript:void(0);" onclick="downloadPowerPoint()"
+                                class="main-btn success-btn-outline btn-hover">
+                                Download PowerPoint
+                            </a>
+
                         </div>
                     </div>
                     <!-- end col -->
@@ -27,7 +40,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="#0">Dashboard</a>
+                                        <a href="#0" onclick="printPage()">Print</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         Book of Table </li>
@@ -58,7 +71,7 @@
                                 </div>
                                 <div class="invoice-date">
                                     <p><span>New Booking:</span> 20/02/2024</p>
-                                    <p><span>All Booking :</span>{{$bookTables->count()}}</p>
+                                    <p><span>All Booking :</span>{{ $bookTables->count() }}</p>
                                 </div>
                             </div>
 
@@ -169,4 +182,163 @@
 
 
     @include('temp.footerdashboard')
+
+
+    <script>
+        // دالة لتحميل PDF باستخدام html2pdf
+        function downloadPDF() {
+            var element = document.querySelector('section');
+            var opt = {
+                margin: 0.5,
+                filename: 'book-table.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'portrait'
+                }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // دالة للطباعة
+        function printPage() {
+            window.print();
+        }
+
+        function downloadExcel() {
+            var table = document.getElementById("bookTable");
+            var workbook = XLSX.utils.table_to_book(table, {
+                sheet: "Sheet1"
+            });
+
+            // إضافة أنماط يدوية
+            var ws = workbook.Sheets["Sheet1"];
+            var range = XLSX.utils.decode_range(ws['!ref']);
+
+            for (var R = range.s.r; R <= range.e.r; ++R) {
+                for (var C = range.s.c; C <= range.e.c; ++C) {
+                    var cell_address = {
+                        c: C,
+                        r: R
+                    };
+                    var cell_ref = XLSX.utils.encode_cell(cell_address);
+                    if (!ws[cell_ref]) continue;
+
+                    ws[cell_ref].s = {
+                        fill: {
+                            fgColor: {
+                                rgb: "FFFF00"
+                            }
+                        },
+                        font: {
+                            bold: true
+                        },
+                        border: {
+                            top: {
+                                style: "thin",
+                                color: {
+                                    rgb: "000000"
+                                }
+                            },
+                            bottom: {
+                                style: "thin",
+                                color: {
+                                    rgb: "000000"
+                                }
+                            },
+                            left: {
+                                style: "thin",
+                                color: {
+                                    rgb: "000000"
+                                }
+                            },
+                            right: {
+                                style: "thin",
+                                color: {
+                                    rgb: "000000"
+                                }
+                            }
+                        }
+                    };
+                }
+            }
+            XLSX.writeFile(workbook, 'book-table.xlsx');
+        }
+
+        // دالة لتحويل البيانات إلى ملف PowerPoint مع أنماط
+        function downloadPowerPoint() {
+            var pptx = new PptxGenJS();
+
+            // إنشاء شريحة جديدة
+            var slide = pptx.addSlide();
+
+            // إضافة عنوان إلى الشريحة
+            slide.addText("Book Table", {
+                x: 1,
+                y: 0.5,
+                fontSize: 24,
+                bold: true,
+                color: '0000FF'
+            });
+
+            // إضافة جدول إلى الشريحة مع أنماط
+            var rows = [
+                [{
+                        text: "Name",
+                        options: {
+                            bold: true,
+                            fill: "87CEEB"
+                        }
+                    },
+                    {
+                        text: "People",
+                        options: {
+                            bold: true,
+                            fill: "87CEEB"
+                        }
+                    },
+                    {
+                        text: "Date",
+                        options: {
+                            bold: true,
+                            fill: "87CEEB"
+                        }
+                    },
+                    {
+                        text: "Time",
+                        options: {
+                            bold: true,
+                            fill: "87CEEB"
+                        }
+                    }
+                ],
+                ["John Doe", "4", "2024-09-28", "18:00"]
+            ];
+
+            slide.addTable(rows, {
+                x: 1,
+                y: 1.5,
+                w: 8,
+                border: {
+                    pt: "1",
+                    color: "000000"
+                },
+                fill: "FFFFFF",
+                fontSize: 14,
+                valign: "middle",
+                align: "center",
+                fontFace: "Arial"
+            });
+
+            // تحميل ملف PowerPoint
+            pptx.writeFile("book-table.pptx");
+        }
+    </script>
 @endsection

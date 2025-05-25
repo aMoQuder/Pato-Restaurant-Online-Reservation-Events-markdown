@@ -164,7 +164,6 @@
                                     </span>
                                     <span class="txt22 m-t-20 d-flex justify-content-between w-75">
                                         ${{ $item->price }}
-                                        <a href="" class="btn3 flex-c-m size13 txt11 trans-0-4"> Add Order</a>
                                     </span>
                                 </div>
                             </div>
@@ -230,7 +229,7 @@
 
                                 <!-- Pic block2 -->
                                 <a href="#" class="wrap-pic-blo2 bg{{ $count }}-blo2"
-                                    style="background-image: url(images/event-0{{ $count - 1 }}.jpg);">
+                                    style="background-image: url('{{ asset('Event/img/' . $event->image) }}');" >
                                     <div class="time-event size10 txt6 effect1">
                                         <span class="txt-effect1 flex-c-m">
                                             08:00 PM Tuesday - 21 November 2018
@@ -277,16 +276,16 @@
                                 </div>
                             </div>
                         </div>
-                            </div>
-                        </div>
-                @endforeach
-
-
                 </div>
+            </div>
+    @endforeach
 
-                <div class="wrap-slick2-dots"></div>
-                </div>
-        </section>
+
+    </div>
+
+    <div class="wrap-slick2-dots"></div>
+    </div>
+    </section>
     @endif
     <!-- Booking -->
     <section class="section-booking bg1-pattern p-t-100 p-b-110">

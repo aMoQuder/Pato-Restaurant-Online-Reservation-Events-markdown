@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TypeFoodRequest;
 use App\Model\TypeFood;
 use Illuminate\Http\Request;
 
@@ -17,13 +18,13 @@ class TypeFoodController extends Controller
         return view('TypeFood.create');
     }
 
-    public function store(Request $request)
+    public function store(TypeFoodRequest $request)
     {
 
         TypeFood::create([
             "name" => $request->name,
         ]);
-        return redirect()->route('TypeFood.create')->with("massege", "successfully adding new TypeFood");
+        return redirect()->route('createtypefood')->with("massege", "successfully adding new TypeFood");
     }
 
     /////////////////////Delete///////////////////////
@@ -31,7 +32,7 @@ class TypeFoodController extends Controller
     {
         $TypeFood = TypeFood::findOrFail($id);
         $TypeFood->delete();
-        return redirect()->back()->with("massege", "successfully deleting new Type from Food");
+        return redirect()->route('createtypefood')->with("massege", "successfully deleting new Type from Food");
     }
 
 
@@ -50,11 +51,11 @@ class TypeFoodController extends Controller
 
     public function save(Request $request)
     {
-        $old_id = $request->old_id;
+        $old_id = $request->id;
         $TypeFood = TypeFood::findOrFail($old_id);
         $TypeFood->update([
             'name' => $request->name,
         ]);
-        return redirect()->back()->with("massege", "successfully adding new category");
+        return redirect()->route('createtypefood')->with("massege", "successfully updated new type food");
     }
 }

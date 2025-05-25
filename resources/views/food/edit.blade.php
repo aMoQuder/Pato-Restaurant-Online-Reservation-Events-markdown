@@ -81,10 +81,20 @@
                                 <div class="select-style-2">
                                     <div class="select-position">
                                         <select name="type_id">
-                                            <option selected value="1">Drink</option>
-                                            <option value="2">Dinnir</option>
-                                            <option value="3">lunch</option>
-                                            <option value="4">Break fast</option>
+
+                                            @foreach ($typefood as $item)
+                                                @if ($food->type_id == $item->id)
+                                                    <option value="{{ $item->id }}"> {{ $item->name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($typefood as $item)
+                                                @if ($food->type_id == $item->id)
+                                                @else
+                                                    <option value="{{ $item->id }}"> {{ $item->name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -100,10 +110,10 @@
                                             <div class="input-style-2">
 
 
-                                                <input type="file" name="image"  id="updateImage"
-                                                onchange=" previewFile()"
-                                                accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                                multiple />
+                                                <input type="file" name="image" id="updateImage"
+                                                    onchange=" previewFile()"
+                                                    accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                                                    multiple />
                                             </div>
 
 
@@ -115,7 +125,8 @@
 
                                             <label>image food</label>
 
-                                            <img src="{{ asset('food/img/' . $food->image) }}"   id="image_preview" class="w-100 " style="height: 220px;" alt="">
+                                            <img src="{{ asset('food/img/' . $food->image) }}" id="image_preview"
+                                                class="w-100 " style="height: 220px;" alt="">
                                         </div>
                                     </div>
                                 </div>

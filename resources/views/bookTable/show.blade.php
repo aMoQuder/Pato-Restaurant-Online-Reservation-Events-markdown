@@ -16,7 +16,7 @@
                         <div class="title d-flex align-items-center flex-wrap">
                             <h2 class="mr-40">ONE BOOK</h2>
                             <a href="{{ route('allBook') }}" class="main-btn primary-btn btn-hover btn-sm">
-                             Go Back</a>
+                                Go Back</a>
                         </div>
                     </div>
                     <!-- end col -->
@@ -64,14 +64,16 @@
                                 <div class="address-item">
                                     <h1 class="mb-15">{{ $bookTable->name }}</h1>
 
-                                        <p class="text-sm">
-                                            <span class="text-medium" style="margin-top: 15px;">Phone:</span>
-                                            {{ $bookTable->phone }}
-                                        </p>
-                                        <p class="text-sm">
-                                            <span class="text-medium">Email:</span>
-                                            {{ $bookTable->email }}
-                                        </p>
+                                    <p class="text-sm">
+                                        <span class="text-medium" style="margin-top: 15px;">Phone:</span>
+                                        {{ $bookTable->phone }}
+                                    </p>
+
+
+                                    <p class="text-sm">
+                                        <span class="text-medium">Email:</span>
+                                        {{ $bookTable->email }}
+                                    </p>
                                 </div>
 
                             </div>
@@ -131,7 +133,7 @@
                                     </li>
 
                                 </ul>
-                            </div>
+                            </div>
 
                         </div>
                         <!-- End Card -->

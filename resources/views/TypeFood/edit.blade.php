@@ -67,7 +67,7 @@
                         <h4 class="alert alert-success text-center">{{ session('massege') }}</h4>
                     @endif
                     <div class="col-lg-12">
-                        <form action="{{ route('foodStore') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('savetypefood') }}" method="post" enctype="multipart/form-data">
 
                             @csrf
                             <!-- input style start -->
@@ -75,78 +75,20 @@
                                 <h6 class="mb-25">Input Fields</h6>
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
                                         <div class="input-style-1">
                                             <label>Name</label>
-                                            <input type="text" placeholder="Name" name="name" />
-                                        </div>
-                                        @error('name')
-                                            <div class="alert alert-danger m-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-6">
+                                            <input type="hidden" name="id" value="{{$TypeFood->id}}">
+                                            <input type="text" value="{{$TypeFood->name}}" name="name" />
 
-                                        <div class="input-style-2">
-                                            <label>Price</label>
-
-                                            <input type="text" placeholder="Price" name="price" />
                                         </div>
-                                        @error('price')
-                                            <div class="alert alert-danger m-2">{{ $message }}</div>
-                                        @enderror
                                     </div>
+
                                 </div>
                                 <!-- end input -->
-                                <!-- end select -->
-                                <div class="select-style-2">
-                                    <div class="select-position">
-                                        <select name="type_id">
-                                            @foreach ($typefood as $item)
-
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach 
-
-                                        </select>
-                                    </div>
-                                </div>
-                                @error('type_id')
-                                    <div class="alert alert-danger m-2">{{ $message }}</div>
-                                @enderror
-
-                                <!-- end select -->
-
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="input-style-1">
-                                            <label>Message</label>
-                                            <textarea placeholder="Message" name="description" rows="5"></textarea>
-                                        </div>
-                                        @error('description')
-                                            <div class="alert alert-danger m-2">{{ $message }}</div>
-                                        @enderror
-                                        <div class="input-style-2">
 
 
-                                            <input type="file" name="image"  id="updateImage"
-                                            onchange=" previewFile()"
-                                            accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                            multiple />                                        </div>
-
-
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input-style-1">
-
-                                            <label>image food</label>
-
-                                            <img src="" class="w-100 " id="image_preview" style="height: 220px;" alt="">
-                                        </div>
-                                        @error('image')
-                                        <div class="alert alert-danger m-2">{{ $message }}</div>
-                                    @enderror
-                                    </div>
-                                </div>
 
                                 <div class="input-style-2">
 

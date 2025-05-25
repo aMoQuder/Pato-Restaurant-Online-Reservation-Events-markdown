@@ -44,7 +44,7 @@ class EventController extends Controller
             File::delete(public_path('Event/img/' . $event->image));
         }
         $event->delete();
-        return redirect()->back()->with("massege", "successfully addign new event");
+        return redirect()->back()->with("massege", "successfully deleting new event");
     }
     /////////////////////  Edit///////////////////////
     public function edit($id)
@@ -81,6 +81,6 @@ class EventController extends Controller
             'date' => $request->date,
             "description" =>  $old_description ,
         ]);
-        return redirect()->back()->with("massege", "successfully adding new event");
+        return redirect()->route('Eventall')->with("massege", "successfully update  event");
     }
 }

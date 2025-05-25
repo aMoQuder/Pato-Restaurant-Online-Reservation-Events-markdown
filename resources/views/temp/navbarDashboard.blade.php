@@ -29,7 +29,7 @@
                  </a>
                  <ul id="ddmenu_1" class="collapse show dropdown-nav">
                      <li>
-                         <a href="{{ route('home') }}" class="active"> eCommerce </a>
+                         <a href="{{ route('home') }}" class="active"> Restaurant </a>
                      </li>
                  </ul>
              </li>
@@ -54,6 +54,9 @@
                   </li>
                   <li>
                     <a href="{{route('allfood')}}"> All Food </a>
+                  </li>
+                  <li>
+                    <a href="{{route('createtypefood')}}"> Add Type Food </a>
                   </li>
                 </ul>
               </li>
